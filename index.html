@@ -6,97 +6,153 @@
   <title>Eugene Narciso | DevOps & Cloud Consulting</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #0e63f4;
+      --bg: #f8f9fa;
+      --text: #333;
+    }
     body {
-      font-family: 'Inter', sans-serif;
       margin: 0;
-      background: #f4f4f4;
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
     header {
-      background: #111;
+      background: linear-gradient(135deg, #0e63f4, #00328a);
       color: white;
-      padding: 2rem;
       text-align: center;
+      padding: 4rem 2rem 2rem;
     }
     header img {
-      border-radius: 10px;
-      max-width: 250px;
-      margin: 1rem auto;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 100%;
+      border: 5px solid white;
+      margin-bottom: 1rem;
+    }
+    header h1 {
+      margin: 0.5rem 0;
+      font-size: 2.2rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
     section {
-      padding: 2rem 5%;
+      padding: 3rem 5%;
       max-width: 1000px;
       margin: auto;
     }
-    h1, h2 {
-      color: #222;
+    h2 {
+      text-align: center;
+      color: #0e63f4;
     }
-    .services ul, .highlights ul {
-      list-style: none;
-      padding-left: 1rem;
+    .services, .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
     }
-    .services li::before, .highlights li::before {
-      content: "✔️";
-      margin-right: 8px;
-      color: #007acc;
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.06);
+      padding: 1.5rem;
+      max-width: 280px;
+      flex: 1;
+      transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #00328a;
+    }
+    .contact {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .contact a {
+      display: inline-block;
+      background: #0e63f4;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      margin: 1rem;
+      text-decoration: none;
+      font-weight: bold;
     }
     footer {
-      background: #111;
+      background: #00328a;
       color: white;
       text-align: center;
-      padding: 1.5rem;
+      padding: 2rem;
+      margin-top: 4rem;
     }
     a {
-      color: #007acc;
-      text-decoration: none;
+      color: #0e63f4;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Eugene Narciso</h1>
-  <p>Cloud, DevOps & AI Consultant | Helping Teams Ship Faster & Safer</p>
   <img src="TPP-46 crop slack.jpg" alt="Eugene Narciso Headshot">
+  <h1>Eugene Narciso</h1>
+  <p>Engineering & DevOps Consultant | Scaling Secure SaaS Platforms with Cloud, Compliance & AI</p>
 </header>
 
 <section>
-  <h2>About Me</h2>
-  <p>
-    I'm a versatile engineering leader with 15+ years of experience scaling SaaS platforms, modernizing infrastructure, and leading DevOps transformations. From launching AI-powered healthcare tools to building secure, HIPAA-compliant cloud environments, I help companies go from legacy bottlenecks to fast, compliant delivery.
-  </p>
-</section>
-
-<section class="services">
-  <h2>Services Offered</h2>
-  <ul>
-    <li>DevOps Consulting (CI/CD, GitHub Actions, Terraform, IaC)</li>
-    <li>Cloud Architecture (AWS, GCP, Kubernetes, Security)</li>
-    <li>AI & Automation Integration (GenAI, OpenAI, Gemini Pro)</li>
-    <li>Healthcare SaaS Compliance (HIPAA, SOC2, DirectTrust)</li>
-    <li>SaaS Modernization (React, NestJS, container orchestration)</li>
-    <li>Team Coaching & Velocity Optimization (DORA metrics, Agile)</li>
-  </ul>
-</section>
-
-<section class="highlights">
-  <h2>Highlights & Case Studies</h2>
-  <ul>
-    <li>🚀 Led infrastructure transformation at <strong>DrWell</strong> to modern cloud stack (NestJS + React)</li>
-    <li>📈 Improved uptime and deployed 24/7 monitoring at <strong>TheKey</strong>, reducing MTTR by 15%</li>
-    <li>🔐 Built and scaled <strong>esguard.io</strong>, a DNS privacy app—awarded San Diego Cool Company 2020</li>
-    <li>🤖 Integrated Generative AI into real-time SaaS platforms to boost engagement and ops efficiency</li>
-  </ul>
+  <h2>What I Do</h2>
+  <div class="services">
+    <div class="card">
+      <h3>DevOps Engineering</h3>
+      <p>Build robust CI/CD pipelines, infrastructure-as-code, container orchestration (Kubernetes, Terraform).</p>
+    </div>
+    <div class="card">
+      <h3>Cloud Architecture</h3>
+      <p>Design and scale cloud platforms using AWS, GCP, and secure, compliant infrastructure.</p>
+    </div>
+    <div class="card">
+      <h3>AI & Automation</h3>
+      <p>Implement Generative AI and intelligent automation into SaaS products for performance and engagement.</p>
+    </div>
+    <div class="card">
+      <h3>Healthcare Compliance</h3>
+      <p>Enable HIPAA, SOC2, and DirectTrust secure solutions for startups and healthcare SaaS companies.</p>
+    </div>
+  </div>
 </section>
 
 <section>
-  <h2>Contact & Book a Session</h2>
+  <h2>Notable Accomplishments</h2>
+  <div class="highlights">
+    <div class="card">
+      <h3>DrWell</h3>
+      <p>Modernized healthcare platform with NestJS/React; enabled HIPAA-compliant cloud deployment and CI/CD velocity.</p>
+    </div>
+    <div class="card">
+      <h3>TheKey</h3>
+      <p>Led engineering/DevOps with a $2M budget; launched AI-integrated apps and reduced downtime by 15%.</p>
+    </div>
+    <div class="card">
+      <h3>Esguard.io</h3>
+      <p>Founded cybersecurity startup recognized as a San Diego “Cool Company”; built encrypted DNS app.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Let’s Work Together</h2>
   <p>Email me at <a href="mailto:eugene.narciso@gmail.com">eugene.narciso@gmail.com</a></p>
-  <p>📅 <a href="#">Click here to book a consultation</a> (link coming soon)</p>
+  <a href="#">📅 Book a Discovery Call</a>
 </section>
 
 <footer>
-  <p>© 2025 Eugene Narciso | <a href="https://www.linkedin.com/in/eugene-narciso/" target="_blank">LinkedIn</a> | <a href="https://github.com/enarciso" target="_blank">GitHub</a></p>
+  <p>© 2025 Eugene Narciso | <a href="https://linkedin.com/in/eugene-narciso" target="_blank">LinkedIn</a> | <a href="https://github.com/enarciso" target="_blank">GitHub</a></p>
 </footer>
 
 </body>
