@@ -131,6 +131,18 @@
     .skills dt { font-weight: 600; }
     .skills dd { margin: 0; color: var(--muted); }
 
+    .feature {
+      background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+      border-radius: var(--radius); padding: 20px 22px;
+    }
+    .feature-kicker { margin: 0 0 4px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .feature h3 { margin: 0 0 10px; font-size: 1.15rem; line-height: 1.35; }
+    .feature h3 a { color: var(--text); text-decoration: none; }
+    .feature h3 a:hover { color: var(--accent); }
+    .feature blockquote { margin: 0 0 12px; padding-left: 14px; border-left: 2px solid var(--border); color: var(--muted); font-style: italic; }
+    .feature-link { font-weight: 600; text-decoration: none; }
+    .feature-link:hover { text-decoration: underline; }
+
     .advisory {
       background: var(--accent-soft); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 20px 22px; display: flex; gap: 16px 24px; align-items: center; justify-content: space-between; flex-wrap: wrap;
@@ -207,9 +219,20 @@
       <li><strong>Security &amp; compliance:</strong> Led SOC 2 compliance at Staked and HIPAA, DirectTrust, and PCI initiatives at DrWell; own technical HIPAA readiness (PHI/PII handling, access controls, logging, audit readiness) for a healthcare platform.</li>
       <li><strong>Reliability at scale:</strong> Sustained 99.9% uptime for critical services across 7,000+ containers in multi-region AWS; cut operational response times ~40% through automation.</li>
       <li><strong>Operational discipline:</strong> Stood up 24/7 incident response, monitoring standards, on-call procedures, and SOPs that improved uptime and MTTR.</li>
-      <li><strong>Business impact:</strong> Shipped Generative AI product capabilities that lifted user engagement 25% and were featured in a <a href="https://wursta.com/case_studies/thekey">published case study</a>.</li>
+      <li><strong>Business impact:</strong> Shipped Generative AI product capabilities that lifted user engagement 25% and were featured in a <a href="https://wursta.com/case_studies/thekey/">published case study</a>.</li>
       <li><strong>Entrepreneurship:</strong> Founded esguard.io, a seed-funded DNS privacy and security startup named a San Diego “Cool Company” (2020).</li>
     </ul>
+  </section>
+
+  <section aria-labelledby="featured">
+    <h2 id="featured">Featured</h2>
+    <article class="feature">
+      <p class="feature-kicker">Case study · Wursta</p>
+      <h3><a href="https://wursta.com/case_studies/thekey/">An industry first: TheKey uses Generative AI to deliver care insights to families</a></h3>
+      <p>As Head of Product Engineering at TheKey, a national in-home care provider, I led the launch of a Vertex AI model that turns caregivers’ brief shift notes into clear daily summaries for clients’ families, a capability no other care provider offered. We integrated it through our existing API backend and rolled it out with a quantifiable QA process that measured output accuracy and built staff confidence around hallucination risk.</p>
+      <blockquote>“[It] closes the gap between the services we provide and our clients’ families.”</blockquote>
+      <a class="feature-link" href="https://wursta.com/case_studies/thekey/">Read the case study <span aria-hidden="true">→</span></a>
+    </article>
   </section>
 
   <section aria-labelledby="experience">
@@ -244,7 +267,7 @@
       <div class="role"><span class="name">Head of Product Engineering (Director)</span><span class="dates">May 2022 – Oct 2024</span></div>
       <ul class="bullets">
         <li>Led a 16-person distributed engineering organization (full-stack, mobile, DevOps) on a $2M operating budget with a mission-driven, empathetic leadership style.</li>
-        <li>Shipped Generative AI product capabilities that increased user engagement 25%; featured in a published <a href="https://wursta.com/case_studies/thekey">Wursta case study</a>.</li>
+        <li>Shipped Generative AI product capabilities, including Vertex AI care-note summaries for families (an industry first), that increased user engagement 25%; featured in a published <a href="https://wursta.com/case_studies/thekey/">Wursta case study</a>.</li>
         <li>Built 24/7 incident response operations, monitoring standards, on-call procedures, and operational SOPs, improving uptime and MTTR.</li>
         <li>Owned end-to-end delivery for customer-facing web and React Native iOS/Android products.</li>
       </ul>
@@ -326,7 +349,7 @@
       <div><dt>CI/CD</dt><dd>GitHub Actions, GitLab, Jenkins, CircleCI</dd></div>
       <div><dt>Data &amp; Integration</dt><dd>PostgreSQL, MySQL, MongoDB, BigQuery, FHIR / EHR integrations, WellSky, ClearCare</dd></div>
       <div><dt>Languages &amp; Frameworks</dt><dd>Python, Node.js, NestJS, React, React Native, Java, shell scripting</dd></div>
-      <div><dt>Applied AI</dt><dd>OpenAI, Gemini, Claude, AI guardrails and governance, AI-assisted development standards</dd></div>
+      <div><dt>Applied AI</dt><dd>OpenAI, Gemini, Claude, Google Vertex AI, AI guardrails and governance, AI-assisted development standards</dd></div>
     </dl>
   </section>
 
@@ -340,9 +363,9 @@
   </section>
 
   <section class="advisory-section" aria-labelledby="advisory">
-    <h2 id="advisory">Advisory</h2>
+    <h2 id="advisory">Let’s Talk</h2>
     <div class="advisory">
-      <p>I’m open to a limited number of advisory conversations with healthcare and SaaS teams on platform architecture, HIPAA / SOC 2 readiness, and applied AI.</p>
+      <p>Whether you’re hiring for a leadership role, exploring a collaboration, or just want to compare notes on platforms, compliance, or applied AI, I’m happy to connect.</p>
       <a class="btn" href="https://calendar.app.google/2Lhoivax3JWHt1Z4A">Book a 30-minute call</a>
     </div>
   </section>
