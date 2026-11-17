@@ -165,6 +165,19 @@
       display: block; width: 100%; border: 1px solid var(--border); border-radius: var(--radius);
       background: #fff;
     }
+    /* Fallback card: shown when a content blocker hides or removes the LinkedIn embed */
+    .post-card {
+      display: grid; gap: 6px; padding: 18px 20px; text-decoration: none; color: var(--text);
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .post-card:hover { border-color: var(--accent); }
+    .post-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .post-meta { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .post-title { font-size: 1.05rem; line-height: 1.35; }
+    .post-text { color: var(--muted); }
+    .post-cta { font-weight: 600; color: var(--accent); }
+    .post.is-embedded .post-card { display: none; }
+    .post.is-blocked iframe { display: none; }
     .posts-controls { display: flex; gap: 8px; margin-top: 8px; }
     .posts-controls button {
       font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; touch-action: manipulation;
@@ -396,12 +409,26 @@
       <a class="posts-follow" href="https://www.linkedin.com/in/eugene-narciso/recent-activity/all/" rel="me">See all activity <span aria-hidden="true">→</span></a>
     </div>
     <div class="posts-track" tabindex="0" role="group" aria-label="LinkedIn posts">
-      <!-- Add new posts at the top of this list; update each aria-label "N of M". -->
+      <!-- Add new posts at the top of this list; update each aria-label "N of M".
+           Each post = LinkedIn embed iframe + a fallback card linking to the post,
+           shown automatically when a content blocker hides the embed. -->
       <div class="post" role="group" aria-roledescription="slide" aria-label="1 of 2">
         <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7251407094606635008" height="1009" title="LinkedIn post: mentoring student founders at the REC Innovation Lab hackathon" loading="lazy" allowfullscreen></iframe>
+        <a class="post-card" href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7251407094606635008/">
+          <span class="post-meta">LinkedIn · Oct 2024</span>
+          <strong class="post-title">Mentoring student founders at the REC Innovation Lab</strong>
+          <span class="post-text">Mentored student teams and met with them as an angel investor at the Founders Game hackathon, where founders went from idea to investor pitch in a single day.</span>
+          <span class="post-cta">View on LinkedIn <span aria-hidden="true">→</span></span>
+        </a>
       </div>
       <div class="post" role="group" aria-roledescription="slide" aria-label="2 of 2">
         <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7256718035162472449" height="775" title="LinkedIn post: Village Up San Diego recognition during Filipino American History Month" loading="lazy" allowfullscreen></iframe>
+        <a class="post-card" href="https://www.linkedin.com/feed/update/urn:li:share:7256718035162472449/">
+          <span class="post-meta">LinkedIn · Oct 2024</span>
+          <strong class="post-title">Recognized by Village Up San Diego</strong>
+          <span class="post-text">Recognized during Filipino American History Month among the founders and supporters building an inclusive innovation community in San Diego.</span>
+          <span class="post-cta">View on LinkedIn <span aria-hidden="true">→</span></span>
+        </a>
       </div>
     </div>
     <div class="posts-controls">
@@ -481,7 +508,23 @@
       track.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(() => sync(true), 120); });
     }
     addEventListener("resize", () => sync(false));
-    sync(false);
+
+    // Content blockers often hide or strip LinkedIn embeds. Show the fallback
+    // card for any post whose iframe is missing, hidden, or collapsed.
+    const checkEmbeds = () => {
+      posts.forEach((post) => {
+        const frame = post.querySelector("iframe");
+        const style = frame && getComputedStyle(frame);
+        const blocked = !frame || !frame.isConnected || style.display === "none" ||
+          style.visibility === "hidden" || frame.offsetHeight < 40;
+        post.classList.toggle("is-blocked", blocked);
+        post.classList.toggle("is-embedded", !blocked);
+      });
+      sync(false);
+    };
+    checkEmbeds();
+    addEventListener("load", checkEmbeds);
+    setTimeout(checkEmbeds, 2500);
   }
 </script>
 
