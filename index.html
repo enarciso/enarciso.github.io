@@ -1,168 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eugene Narciso | DevOps & Cloud Consulting</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Eugene Narciso | Head of AI &amp; Platform Engineering</title>
+  <meta name="description" content="Eugene Narciso is an engineering leader with 15+ years scaling secure, compliant SaaS and healthcare platforms: platform architecture, cloud infrastructure, HIPAA / SOC 2, and applied AI.">
+  <link rel="canonical" href="https://enarciso.github.io/">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Eugene Narciso | Head of AI & Platform Engineering">
+  <meta property="og:description" content="Engineering leader building secure, compliant healthcare platforms: cloud infrastructure, DevSecOps, HIPAA / SOC 2, and applied AI.">
+  <meta property="og:url" content="https://enarciso.github.io/">
+  <meta property="og:image" content="https://enarciso.github.io/headshot.jpg">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Eugene Narciso",
+    "jobTitle": "Head of AI & Platform Engineering",
+    "worksFor": { "@type": "Organization", "name": "DrWell" },
+    "address": { "@type": "PostalAddress", "addressLocality": "San Diego", "addressRegion": "CA", "addressCountry": "US" },
+    "url": "https://enarciso.github.io/",
+    "image": "https://enarciso.github.io/headshot.jpg",
+    "sameAs": ["https://www.linkedin.com/in/eugene-narciso", "https://github.com/enarciso"]
+  }
+  </script>
+
   <style>
     :root {
-      --primary: #0e63f4;
-      --bg: #f8f9fa;
-      --text: #333;
+      color-scheme: light dark;
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --text: #1d2330;
+      --muted: #5a6475;
+      --border: #e3e7ee;
+      --accent: #0b5bd3;
+      --accent-text: #ffffff;
+      --accent-soft: #e8f0fd;
+      --radius: 12px;
     }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f131a;
+        --surface: #171c25;
+        --text: #e6e9ef;
+        --muted: #9aa4b5;
+        --border: #2a3140;
+        --accent: #6ea8ff;
+        --accent-text: #0b1220;
+        --accent-soft: #1a2638;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { accent-color: var(--accent); }
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
       background: var(--bg);
       color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
-    header {
-      background: linear-gradient(135deg, #0e63f4, #00328a);
-      color: white;
-      text-align: center;
-      padding: 4rem 2rem 2rem;
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    .hero { padding: 56px 0 32px; }
+    .hero-inner { display: flex; gap: 28px; align-items: center; }
+    .hero img {
+      width: 128px; height: 128px; border-radius: 50%; object-fit: cover;
+      flex-shrink: 0; border: 3px solid var(--surface); box-shadow: 0 2px 12px rgb(0 0 0 / 0.12);
     }
-    header img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 100%;
-      border: 5px solid white;
-      margin-bottom: 1rem;
+    .hero h1 { margin: 0; font-size: clamp(1.9rem, 4vw, 2.4rem); line-height: 1.15; letter-spacing: -0.02em; }
+    .hero .title { margin: 6px 0 2px; font-size: 1.1rem; font-weight: 600; }
+    .hero .tagline { margin: 0; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 16px; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text);
     }
-    header h1 {
-      margin: 0.5rem 0;
-      font-size: 2.2rem;
-    }
-    header p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    section {
-      padding: 3rem 5%;
-      max-width: 1000px;
-      margin: auto;
-    }
+    .btn:hover { border-color: var(--accent); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+    .btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* Sections */
+    section { padding: 28px 0; border-top: 1px solid var(--border); }
     h2 {
-      text-align: center;
-      color: #0e63f4;
+      margin: 0 0 16px; font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
     }
-    .services, .highlights {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
+    p { margin: 0 0 12px; }
+
+    .metrics {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px; margin: 0 0 20px; padding: 0; list-style: none;
     }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.06);
-      padding: 1.5rem;
-      max-width: 280px;
-      flex: 1;
-      transition: transform 0.2s ease-in-out;
+    .metrics li { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+    .metrics strong { display: block; font-size: 1.5rem; line-height: 1.2; color: var(--accent); }
+    .metrics span { font-size: 0.85rem; color: var(--muted); }
+
+    ul.bullets { margin: 0; padding-left: 1.2em; }
+    ul.bullets li { margin-bottom: 6px; }
+    ul.bullets li::marker { color: var(--accent); }
+
+    .job { margin-bottom: 24px; }
+    .job:last-child { margin-bottom: 0; }
+    .job-head { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; }
+    .job-head h3 { margin: 0; font-size: 1.05rem; }
+    .job-head .loc { color: var(--muted); font-size: 0.9rem; }
+    .role { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; margin: 4px 0 6px; }
+    .role .name { font-weight: 600; font-style: italic; }
+    .role .dates { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+    .role-block + .role-block { margin-top: 14px; }
+
+    .skills { display: grid; gap: 10px; margin: 0; }
+    .skills div { display: grid; grid-template-columns: 200px 1fr; gap: 12px; }
+    .skills dt { font-weight: 600; }
+    .skills dd { margin: 0; color: var(--muted); }
+
+    .advisory {
+      background: var(--accent-soft); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px 22px; display: flex; gap: 16px 24px; align-items: center; justify-content: space-between; flex-wrap: wrap;
     }
-    .card:hover {
-      transform: scale(1.03);
+    .advisory p { margin: 0; max-width: 520px; }
+
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
+    footer a { color: inherit; }
+
+    @media (max-width: 600px) {
+      .hero { padding-top: 36px; }
+      .hero-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .hero img { width: 96px; height: 96px; }
+      .skills div { grid-template-columns: 1fr; gap: 2px; }
     }
-    .card h3 {
-      margin-top: 0;
-      color: #00328a;
-    }
-    .contact {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .contact a {
-      display: inline-block;
-      background: #0e63f4;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 6px;
-      margin: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    footer {
-      background: #00328a;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 4rem;
-    }
-    a {
-      color: #0e63f4;
+
+    @media print {
+      :root { --bg: #fff; --surface: #fff; --text: #000; --muted: #333; --border: #bbb; --accent: #000; --accent-soft: #fff; }
+      body { font-size: 10pt; line-height: 1.4; }
+      .wrap { max-width: none; padding: 0; }
+      .hero { padding: 0 0 12px; }
+      .hero img, .actions, .advisory-section, footer { display: none; }
+      section { padding: 10px 0; }
+      .job, .metrics li { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="TPP-46 crop slack.jpg" alt="Eugene Narciso Headshot">
-  <h1>Eugene Narciso</h1>
-  <p>Engineering & DevOps Consultant | Scaling Secure SaaS Platforms with Cloud, Compliance & AI</p>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <img src="headshot.jpg" alt="Eugene Narciso" width="128" height="128" fetchpriority="high">
+      <div>
+        <h1>Eugene Narciso</h1>
+        <p class="title">Head of AI &amp; Platform Engineering</p>
+        <p class="tagline">Secure, compliant healthcare platforms · Cloud infrastructure · HIPAA / SOC&nbsp;2</p>
+        <p class="tagline">San Diego, CA</p>
+      </div>
+    </div>
+    <nav class="actions" aria-label="Contact and resume">
+      <a class="btn primary" href="Eugene_Narciso_Resume.pdf" download>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16 6 10l1.4-1.4 3.6 3.6V3h2v9.2l3.6-3.6L18 10l-6 6Zm-8 5v-6h2v4h12v-4h2v6H4Z"/></svg>
+        Download resume (PDF)
+      </a>
+      <a class="btn" href="mailto:eugene.narciso@gmail.com">Email</a>
+      <a class="btn" href="https://www.linkedin.com/in/eugene-narciso" rel="me">LinkedIn</a>
+      <a class="btn" href="https://github.com/enarciso" rel="me">GitHub</a>
+    </nav>
+  </div>
 </header>
 
-<section>
-  <h2>What I Do</h2>
-  <div class="services">
-    <div class="card">
-      <h3>DevOps Engineering</h3>
-      <p>Build robust CI/CD pipelines, infrastructure-as-code, container orchestration (Kubernetes, Terraform).</p>
-    </div>
-    <div class="card">
-      <h3>Cloud Architecture</h3>
-      <p>Design and scale cloud platforms using AWS, GCP, and secure, compliant infrastructure.</p>
-    </div>
-    <div class="card">
-      <h3>AI & Automation</h3>
-      <p>Implement Generative AI and intelligent automation into SaaS products for performance and engagement.</p>
-    </div>
-    <div class="card">
-      <h3>Healthcare Compliance</h3>
-      <p>Enable HIPAA, SOC2, and DirectTrust secure solutions for startups and healthcare SaaS companies.</p>
-    </div>
-  </div>
-</section>
+<main class="wrap">
 
-<section>
-  <h2>Notable Accomplishments</h2>
-  <div class="highlights">
-    <div class="card">
-      <h3>DrWell</h3>
-      <p>Modernized healthcare platform with NestJS/React; enabled HIPAA-compliant cloud deployment and CI/CD velocity.</p>
-    </div>
-    <div class="card">
-      <h3>TheKey</h3>
-      <p>Led engineering/DevOps with a $2M budget; launched AI-integrated apps and reduced downtime by 15%.</p>
-    </div>
-    <div class="card">
-      <h3>Esguard.io</h3>
-      <p>Founded cybersecurity startup recognized as a San Diego “Cool Company”; built encrypted DNS app.</p>
-    </div>
-  </div>
-</section>
+  <section aria-labelledby="summary">
+    <h2 id="summary">Summary</h2>
+    <p>Engineering leader with 15+ years scaling SaaS and healthcare platforms and building the teams, processes, and controls that keep them secure, compliant, and reliable. As Head of AI &amp; Platform Engineering at DrWell, I report directly to the CEO and own platform architecture, data consolidation, HIPAA-aware system design, and AI governance.</p>
+    <p>Previously led a 16-person distributed engineering organization on a $2M budget, ran multi-region AWS infrastructure at 99.9% uptime across 7,000+ containers, and founded a seed-funded cybersecurity startup. Known for turning ad-hoc operations into repeatable discipline (incident response, on-call, SOPs, CI/CD, and audit readiness) so teams move fast without creating compliance risk.</p>
+  </section>
 
-<section>
-  <h2>Blog</h2>
-  <div class="blog">
-    <div class="card">
-      <h3>Coming Soon</h3>
-      <p>Insights on DevOps, SaaS architecture, compliance, and building AI-ready infrastructure.</p>
-    </div>
-  </div>
-</section>
+  <section aria-labelledby="highlights">
+    <h2 id="highlights">Leadership Highlights</h2>
+    <ul class="metrics">
+      <li><strong>16</strong><span>engineers led, distributed org</span></li>
+      <li><strong>$2M</strong><span>operating budget owned</span></li>
+      <li><strong>99.9%</strong><span>uptime, 7,000+ containers</span></li>
+      <li><strong>~40%</strong><span>faster operational response</span></li>
+      <li><strong>25%</strong><span>engagement lift from GenAI</span></li>
+    </ul>
+    <ul class="bullets">
+      <li><strong>Organization &amp; budget:</strong> Built and led a 16-person distributed engineering organization (full-stack, mobile, DevOps) and owned a $2M operating budget.</li>
+      <li><strong>Platform modernization:</strong> Led and built DrWell’s platform modernization, moving the legacy codebase to NestJS/React and consolidating three databases into one governed data architecture, a top-priority company KPI.</li>
+      <li><strong>Security &amp; compliance:</strong> Led SOC 2 compliance at Staked and HIPAA, DirectTrust, and PCI initiatives at DrWell; own technical HIPAA readiness (PHI/PII handling, access controls, logging, audit readiness) for a healthcare platform.</li>
+      <li><strong>Reliability at scale:</strong> Sustained 99.9% uptime for critical services across 7,000+ containers in multi-region AWS; cut operational response times ~40% through automation.</li>
+      <li><strong>Operational discipline:</strong> Stood up 24/7 incident response, monitoring standards, on-call procedures, and SOPs that improved uptime and MTTR.</li>
+      <li><strong>Business impact:</strong> Shipped Generative AI product capabilities that lifted user engagement 25% and were featured in a <a href="https://wursta.com/case_studies/thekey">published case study</a>.</li>
+      <li><strong>Entrepreneurship:</strong> Founded esguard.io, a seed-funded DNS privacy and security startup named a San Diego “Cool Company” (2020).</li>
+    </ul>
+  </section>
 
-<section class="contact">
-  <h2>Let’s Work Together</h2>
-  <p>Email me at <a href="mailto:eugene.narciso@gmail.com">eugene.narciso@gmail.com</a></p>
-  <a href="https://calendly.com/enarciso/30min" target="_blank">📅 Book a Discovery Call</a>
-</section>
+  <section aria-labelledby="experience">
+    <h2 id="experience">Professional Experience</h2>
+
+    <article class="job">
+      <div class="job-head"><h3>DrWell (formerly BuildMyHealth)</h3><span class="loc">San Francisco, CA (Remote)</span></div>
+      <div class="role-block">
+        <div class="role"><span class="name">Head of AI &amp; Platform Engineering (Director)</span><span class="dates">May 2026 – Present</span></div>
+        <ul class="bullets">
+          <li>Report directly to the CEO; own technical architecture, AI enablement, and platform modernization for a next-generation healthcare platform.</li>
+          <li>Lead consolidation of three databases into a single governed data architecture (migration planning, data mapping, validation, and rollback), a top-priority company KPI.</li>
+          <li>Own technical HIPAA readiness: privacy-by-design PHI/PII handling, access controls, logging, and audit readiness.</li>
+          <li>Set the company’s AI strategy and governance: reusable AI services, APIs, guardrails, prompt patterns, and audit controls that prevent data leakage and maintainability debt.</li>
+          <li>Lead development of the consumer-facing AI Assistant and the shared AI framework reused across the platform.</li>
+          <li>Set standards for safe AI-assisted development (Codex, Claude, Replit, GitHub) across a multi-contributor team, covering source control, code review, testing, and deployment.</li>
+        </ul>
+      </div>
+      <div class="role-block">
+        <div class="role"><span class="name">Engineering Manager</span><span class="dates">Dec 2024 – May 2026</span></div>
+        <ul class="bullets">
+          <li>Led HIPAA compliance initiatives; managed vendor relationships and FHIR-compliant EHR integrations.</li>
+          <li>Led modernization of the legacy codebase to NestJS/React, improving scalability and maintainability.</li>
+          <li>Built CI/CD pipelines and DevOps automation; drove engineering KPIs for performance, uptime, and reliability.</li>
+          <li>Owned delivery planning, technical prioritization, and cross-team coordination for customer-facing web applications.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="job-head"><h3>TheKey, LLC</h3><span class="loc">La Jolla, CA (Remote)</span></div>
+      <div class="role"><span class="name">Head of Product Engineering (Director)</span><span class="dates">May 2022 – Oct 2024</span></div>
+      <ul class="bullets">
+        <li>Led a 16-person distributed engineering organization (full-stack, mobile, DevOps) on a $2M operating budget with a mission-driven, empathetic leadership style.</li>
+        <li>Shipped Generative AI product capabilities that increased user engagement 25%; featured in a published <a href="https://wursta.com/case_studies/thekey">Wursta case study</a>.</li>
+        <li>Built 24/7 incident response operations, monitoring standards, on-call procedures, and operational SOPs, improving uptime and MTTR.</li>
+        <li>Owned end-to-end delivery for customer-facing web and React Native iOS/Android products.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job-head"><h3>Staked (acquired by Payward / Kraken)</h3><span class="loc">Boston, MA (Remote)</span></div>
+      <div class="role"><span class="name">Site Reliability Engineering Manager</span><span class="dates">Feb 2021 – May 2022</span></div>
+      <ul class="bullets">
+        <li>Led an 8-person, multi-time-zone SRE team supporting 99.9% uptime for critical services.</li>
+        <li>Led SOC 2 Type II compliance for critical services, implementing infrastructure controls, access management, logging, and monitoring.</li>
+        <li>Operated large-scale Kubernetes workloads (7,000+ containers) across multi-region AWS.</li>
+        <li>Cut operational response times by ~40% by building automated remediation tooling.</li>
+        <li>Authored and maintained best practices and SOPs for production deployments and monitoring.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job-head"><h3>esguard.io</h3><span class="loc">San Diego, CA</span></div>
+      <div class="role"><span class="name">Founder &amp; CEO</span><span class="dates">Oct 2018 – Dec 2021</span></div>
+      <ul class="bullets">
+        <li>Founded and led a cybersecurity startup focused on DNS privacy and security; secured seed funding and built the engineering and go-to-market functions.</li>
+        <li>Named one of San Diego’s “Cool Companies” (2020) by San Diego Connect.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job-head"><h3>Teradata</h3><span class="loc">San Diego, CA</span></div>
+      <div class="role"><span class="name">Sr. DevOps Engineer (Technical Lead)</span><span class="dates">Dec 2017 – Feb 2021</span></div>
+      <ul class="bullets">
+        <li>Led the logging and monitoring team; built infrastructure-as-code frameworks with Ansible, Jenkins, and HashiCorp tooling.</li>
+        <li>Partnered with development teams to optimize and accelerate code deployment.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job-head"><h3>Sony Interactive Entertainment</h3><span class="loc">San Diego, CA</span></div>
+      <div class="role"><span class="name">Sr. DevOps Engineer (Technical Lead)</span><span class="dates">Dec 2016 – Dec 2017</span></div>
+      <ul class="bullets">
+        <li>Systems engineering lead for the Data Warehouse team; managed 200+ node Hadoop clusters via infrastructure-as-code.</li>
+        <li>Managed AWS CloudFormation and YARN workloads; automated daily operations with Python and shell scripting.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job-head"><h3>Dimension Data</h3><span class="loc">San Diego, CA</span></div>
+      <div class="role"><span class="name">Sr. DevOps Engineer (Technical Lead)</span><span class="dates">Feb 2015 – Dec 2016</span></div>
+      <ul class="bullets">
+        <li>Led a 6-person global release engineering team supporting worldwide production releases with Jenkins and Chef.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job-head"><h3>Qualcomm Technologies, Inc.</h3><span class="loc">San Diego, CA</span></div>
+      <div class="role"><span class="name">Senior Systems Engineer, Qualcomm Open Source Portal</span><span class="dates">Jun 2012 – Feb 2015</span></div>
+      <div class="role"><span class="name">Senior IT Engineer</span><span class="dates">Jun 2006 – Jun 2012</span></div>
+      <ul class="bullets">
+        <li>Maintained 100+ systems and private cloud infrastructure for the R&amp;D open source division; automated deployments with Chef.</li>
+        <li>Supported the engineering team developing early LTE technology; implemented isolated over-the-air (OTA) test environments.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job-head"><h3>MedImpact Healthcare Systems, Inc.</h3><span class="loc">San Diego, CA</span></div>
+      <div class="role"><span class="name">IT Systems Administrator</span><span class="dates">Jan 2000 – Jun 2006</span></div>
+      <ul class="bullets">
+        <li>Managed data-center systems, access permissions, and server security for a healthcare pharmacy benefit manager.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section aria-labelledby="skills">
+    <h2 id="skills">Skills</h2>
+    <dl class="skills">
+      <div><dt>Leadership</dt><dd>Engineering org building, budget ownership, roadmap and delivery, incident management, on-call and SOPs, vendor management, executive partnership</dd></div>
+      <div><dt>Security &amp; Compliance</dt><dd>HIPAA, SOC 2, PCI, DirectTrust, PHI/PII protection, access controls, audit logging, SecOps, Dependabot, SonarCloud, Cloudflare</dd></div>
+      <div><dt>Cloud &amp; Infrastructure</dt><dd>AWS (EKS, ECS, CloudWatch, CloudFormation), GCP (GKE, BigQuery, Firestore), Kubernetes, Docker, Terraform, Ansible, Chef, Vagrant</dd></div>
+      <div><dt>Observability</dt><dd>Datadog, Sentry, Sumo Logic, CloudWatch, Log Explorer</dd></div>
+      <div><dt>CI/CD</dt><dd>GitHub Actions, GitLab, Jenkins, CircleCI</dd></div>
+      <div><dt>Data &amp; Integration</dt><dd>PostgreSQL, MySQL, MongoDB, BigQuery, FHIR / EHR integrations, WellSky, ClearCare</dd></div>
+      <div><dt>Languages &amp; Frameworks</dt><dd>Python, Node.js, NestJS, React, React Native, Java, shell scripting</dd></div>
+      <div><dt>Applied AI</dt><dd>OpenAI, Gemini, Claude, AI guardrails and governance, AI-assisted development standards</dd></div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="education">
+    <h2 id="education">Education &amp; Certifications</h2>
+    <ul class="bullets">
+      <li>Certified SAFe 4 Practitioner, Scaled Agile (2020)</li>
+      <li>Microsoft Certified Professional; CompTIA+, Computer Education Institute (2001)</li>
+      <li>A.A., Education, Southwestern Community College, Chula Vista, CA</li>
+    </ul>
+  </section>
+
+  <section class="advisory-section" aria-labelledby="advisory">
+    <h2 id="advisory">Advisory</h2>
+    <div class="advisory">
+      <p>I’m open to a limited number of advisory conversations with healthcare and SaaS teams on platform architecture, HIPAA / SOC 2 readiness, and applied AI.</p>
+      <a class="btn" href="https://calendar.app.google/2Lhoivax3JWHt1Z4A">Book a 30-minute call</a>
+    </div>
+  </section>
+
+</main>
 
 <footer>
-  <p>© 2025 Eugene Narciso | <a href="https://linkedin.com/in/eugene-narciso" target="_blank">LinkedIn</a> | <a href="https://github.com/enarciso" target="_blank">GitHub</a></p>
+  <div class="wrap">
+    © 2026 Eugene Narciso ·
+    <a href="mailto:eugene.narciso@gmail.com">eugene.narciso@gmail.com</a> ·
+    <a href="https://www.linkedin.com/in/eugene-narciso" rel="me">LinkedIn</a> ·
+    <a href="https://github.com/enarciso" rel="me">GitHub</a>
+  </div>
 </footer>
 
 </body>
