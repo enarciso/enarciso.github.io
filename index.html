@@ -149,6 +149,34 @@
     }
     .advisory p { margin: 0; max-width: 520px; }
 
+    /* LinkedIn posts: native scroll-snap row with previous/next controls */
+    .posts-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .posts-head h2 { margin: 0; }
+    .posts-follow { font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+    .posts-follow:hover { text-decoration: underline; }
+    .posts-track {
+      display: flex; gap: 16px; align-items: flex-start;
+      overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+      padding-bottom: 12px; touch-action: manipulation;
+    }
+    .posts-track:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: var(--radius); }
+    .post { flex: 0 0 min(504px, 88%); scroll-snap-align: start; }
+    .post iframe {
+      display: block; width: 100%; border: 1px solid var(--border); border-radius: var(--radius);
+      background: #fff;
+    }
+    .posts-controls { display: flex; gap: 8px; margin-top: 8px; }
+    .posts-controls button {
+      font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; touch-action: manipulation;
+      padding: 7px 14px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text);
+    }
+    .posts-controls button:hover:not(:disabled) { border-color: var(--accent); }
+    .posts-controls button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .posts-controls button:disabled { opacity: 0.45; cursor: default; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    @media (prefers-reduced-motion: no-preference) { .posts-track { scroll-behavior: smooth; } }
+
     footer { padding: 32px 0 48px; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
     footer a { color: inherit; }
 
@@ -164,7 +192,7 @@
       body { font-size: 10pt; line-height: 1.4; }
       .wrap { max-width: none; padding: 0; }
       .hero { padding: 0 0 12px; }
-      .hero img, .actions, .advisory-section, footer { display: none; }
+      .hero img, .actions, .advisory-section, .posts-section, footer { display: none; }
       section { padding: 10px 0; }
       .job, .metrics li { break-inside: avoid; }
       a { color: inherit; text-decoration: none; }
@@ -362,6 +390,27 @@
     </ul>
   </section>
 
+  <section class="posts-section" aria-labelledby="posts" aria-roledescription="carousel">
+    <div class="posts-head">
+      <h2 id="posts">On LinkedIn</h2>
+      <a class="posts-follow" href="https://www.linkedin.com/in/eugene-narciso/recent-activity/all/" rel="me">See all activity <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="posts-track" tabindex="0" role="group" aria-label="LinkedIn posts">
+      <!-- Add new posts at the top of this list; update each aria-label "N of M". -->
+      <div class="post" role="group" aria-roledescription="slide" aria-label="1 of 2">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7251407094606635008" height="1009" title="LinkedIn post: mentoring student founders at the REC Innovation Lab hackathon" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="post" role="group" aria-roledescription="slide" aria-label="2 of 2">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7256718035162472449" height="775" title="LinkedIn post: Village Up San Diego recognition during Filipino American History Month" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="posts-controls">
+      <button type="button" data-direction="-1">Previous post</button>
+      <button type="button" data-direction="1">Next post</button>
+    </div>
+    <p class="visually-hidden" role="status" aria-live="polite"></p>
+  </section>
+
   <section class="advisory-section" aria-labelledby="advisory">
     <h2 id="advisory">Let’s Talk</h2>
     <div class="advisory">
@@ -380,6 +429,61 @@
     <a href="https://github.com/enarciso" rel="me">GitHub</a>
   </div>
 </footer>
+
+<script type="module">
+  // Previous/next for the LinkedIn posts row. Scrolling and snapping stay native;
+  // this only moves to the adjacent post and announces the settled position.
+  const track = document.querySelector(".posts-track");
+  if (track) {
+    const posts = [...track.children];
+    const [prev, next] = document.querySelectorAll(".posts-controls button");
+    const status = document.querySelector(".posts-section [role=status]");
+    const controls = document.querySelector(".posts-controls");
+    let settled = 0;
+    let pending = null;
+
+    const nearest = () => {
+      const left = track.scrollLeft;
+      let best = 0;
+      posts.forEach((p, i) => {
+        if (Math.abs(p.offsetLeft - track.offsetLeft - left) < Math.abs(posts[best].offsetLeft - track.offsetLeft - left)) best = i;
+      });
+      return best;
+    };
+    const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+
+    const sync = (announce) => {
+      const i = atEnd() ? posts.length - 1 : nearest();
+      const noOverflow = track.scrollWidth <= track.clientWidth + 2;
+      controls.hidden = noOverflow;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = atEnd();
+      if (document.activeElement === prev && prev.disabled) next.focus();
+      if (document.activeElement === next && next.disabled) prev.focus();
+      if (announce && i !== settled) status.textContent = `Post ${i + 1} of ${posts.length}`;
+      settled = i;
+      pending = null;
+    };
+
+    const go = (dir) => {
+      const from = pending ?? nearest();
+      const to = Math.min(posts.length - 1, Math.max(0, from + dir));
+      pending = to;
+      track.scrollTo({ left: posts[to].offsetLeft - track.offsetLeft });
+    };
+    prev.addEventListener("click", () => go(-1));
+    next.addEventListener("click", () => go(1));
+
+    if ("onscrollend" in window) {
+      track.addEventListener("scrollend", () => sync(true));
+    } else {
+      let t;
+      track.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(() => sync(true), 120); });
+    }
+    addEventListener("resize", () => sync(false));
+    sync(false);
+  }
+</script>
 
 </body>
 </html>
